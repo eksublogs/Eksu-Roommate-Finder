@@ -1,0 +1,1193 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksu Bro - Your All-in-One EKSU Student Hub</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-social a {
+            color: var(--dark);
+            font-size: 1.2rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .nav-social a:hover {
+            transform: translateY(-3px);
+        }
+
+        .nav-social .fa-instagram:hover { color: #e4405f; }
+        .nav-social .fa-whatsapp:hover { color: #25d366; }
+        .nav-social .fa-x-twitter:hover { color: #000; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            animation: wave 15s linear infinite;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.2);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .service-card:hover .service-icon {
+            animation: none;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #6b7280;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        .new-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .service-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .service-link:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        /* Roommate Finder */
+        .roommate-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roommate-section::before {
+            content: '🏠';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .roommate-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .roommate-header h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .roommate-header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+            background: #f9fafb;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input[type="file"] {
+            background: white;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about p {
+            font-size: 1.3rem;
+            color: #6b7280;
+            line-height: 1.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .social-icons a {
+            color: white;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-icons .fa-instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .social-icons .fa-whatsapp:hover {
+            background: #25d366;
+        }
+
+        .social-icons .fa-x-twitter:hover {
+            background: #000;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 968px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-social {
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">EKSU BRO</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#roommate">Find Roommate</a></li>
+                <li><a href="#about">About</a></li>
+                <div class="nav-social">
+                    <a href="https://instagram.com/eksubro" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/2348012345678" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://x.com/eksubro" target="_blank" aria-label="X (Twitter)">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                </div>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>EKSU BRO</h1>
+            <p>Connecting EKSU students to everything they need</p>
+            <a href="#roommate" class="cta-button">Find Your Roommate Now</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💰</div>
+                    <h3>Crypto Exchange</h3>
+                    <p>Buy, sell, and trade cryptocurrency with ease. Get the best rates and lightning-fast transactions tailored for EKSU students.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💞</div>
+                    <h3>Matchmaking Service</h3>
+                    <p>Find your perfect match! Connect with other EKSU students looking for meaningful relationships. Let us play cupid!</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🧺</div>
+                    <h3>Laundry Services</h3>
+                    <p>Professional laundry and dry cleaning services for busy students. Fresh clothes, hassle-free!</p>
+                    <a href="https://eksulaundry.com" target="_blank" class="service-link">Visit Laundry Site</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Roommate Finder</h3>
+                    <p>Looking for the perfect roommate? We'll match you with compatible students based on your lifestyle and preferences.</p>
+                    <span class="badge new-badge">✨ NEW SERVICE</span>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📚</div>
+                    <h3>Past Questions</h3>
+                    <p>Get access to the most comprehensive collection of past questions for all courses. Study smart, ace your exams!</p>
+                    <span class="badge">🏆 No. 1 in EKSU</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roommate Finder Section -->
+    <section class="roommate-section" id="roommate">
+        <div class="container">
+            <div class="roommate-header">
+                <h2>🏠 Find Your Perfect Roommate</h2>
+                <p>Fill out the form below and we'll connect you with compatible roommates!</p>
+            </div>
+
+            <div class="form-container">
+                <!-- Initial Question -->
+                <div id="initialQuestion">
+                    <h3 style="text-align: center; color: var(--dark); margin-bottom: 2rem; font-size: 1.8rem;">
+                        Let's Get Started!
+                    </h3>
+                    <div class="form-group">
+                        <label for="houseStatus" style="font-size: 1.2rem; text-align: center; display: block;">
+                            What do you need help with?
+                        </label>
+                        <select id="houseStatus" style="font-size: 1.1rem; text-align: center; padding: 1.2rem;">
+                            <option value="">-- Select an option --</option>
+                            <option value="have">I already have a house (Need roommate)</option>
+                            <option value="available">I don't have a house (Available as roommate)</option>
+                            <option value="looking">I'm looking for a house (Need accommodation)</option>
+                            <option value="selling">I want to sell something</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Roommate Form (Hidden initially) -->
+                <form id="roommateForm" style="display: none;">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <button type="button" id="backBtn" style="background: #6b7280; color: white; border: none; padding: 0.5rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                            ← Back
+                        </button>
+                    </div>
+
+                    <input type="hidden" id="houseStatusValue" name="houseStatus">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gender">Gender *</label>
+                            <select id="gender" name="gender" required="">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="location">Location / Hostel *</label>
+                            <input type="text" id="location" name="location" placeholder="e.g., Iworoko, Adebayo" required="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Budget Range *</label>
+                            <input type="text" id="budget" name="budget" placeholder="e.g., ₦50,000 - ₦80,000" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferences">Lifestyle Preferences *</label>
+                        <textarea id="preferences" name="preferences" placeholder="Tell us about your lifestyle, study habits, cleanliness preferences, sleeping schedule, etc." required=""></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp Number *</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="e.g., +2348012345678" required="">
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fab fa-whatsapp"></i> Submit Application
+                    </button>
+
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <p>Redirecting to WhatsApp...</p>
+                    </div>
+                </form>
+
+                <!-- Selling Form (Hidden initially) -->
+                <form id="sellingForm" style="display: none;">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <button type="button" id="backBtnSelling" style="background: #6b7280; color: white; border: none; padding: 0.5rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                            ← Back
+                        </button>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sellerName">Your Full Name *</label>
+                            <input type="text" id="sellerName" name="sellerName" placeholder="Enter your full name" required="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sellerGender">Gender *</label>
+                            <select id="sellerGender" name="sellerGender" required="">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemName">What are you selling? *</label>
+                        <input type="text" id="itemName" name="itemName" placeholder="e.g., iPhone 13, Laptop, Bed Frame, etc." required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemDescription">Item Description *</label>
+                        <textarea id="itemDescription" name="itemDescription" placeholder="Describe the item condition, features, specifications, etc." required=""></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="originalPrice">Original Purchase Price *</label>
+                            <input type="text" id="originalPrice" name="originalPrice" placeholder="e.g., ₦150,000" required="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sellingPrice">Your Selling Price *</label>
+                            <input type="text" id="sellingPrice" name="sellingPrice" placeholder="e.g., ₦100,000" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="receiptAvailable">Do you have the original receipt? *</label>
+                        <select id="receiptAvailable" name="receiptAvailable" required="">
+                            <option value="">Select an option</option>
+                            <option value="Yes">Yes, I have the receipt</option>
+                            <option value="No">No, I don't have the receipt</option>
+                            <option value="Partial">I have partial documentation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemCondition">Item Condition *</label>
+                        <select id="itemCondition" name="itemCondition" required="">
+                            <option value="">Select condition</option>
+                            <option value="Brand New">Brand New (Unused)</option>
+                            <option value="Like New">Like New (Barely used)</option>
+                            <option value="Good">Good (Normal wear)</option>
+                            <option value="Fair">Fair (Shows signs of use)</option>
+                            <option value="Poor">Poor (Needs repair)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemAge">How old is the item? *</label>
+                        <input type="text" id="itemAge" name="itemAge" placeholder="e.g., 6 months, 1 year, 2 years" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sellerLocation">Your Location *</label>
+                        <input type="text" id="sellerLocation" name="sellerLocation" placeholder="e.g., Iworoko, Adebayo, Afe Babalola" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sellerWhatsapp">WhatsApp Number *</label>
+                        <input type="tel" id="sellerWhatsapp" name="sellerWhatsapp" placeholder="e.g., +2348012345678" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: block; margin-bottom: 0.5rem;">Upload Item Pictures *</label>
+                        <input type="file" id="itemPictures" name="itemPictures" accept="image/*" multiple="" style="padding: 0.8rem;" required="">
+                        <p style="font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem;">
+                            📸 Please upload clear pictures of the item from different angles (You can select multiple images)
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalInfo">Additional Information (Optional)</label>
+                        <textarea id="additionalInfo" name="additionalInfo" placeholder="Any other details buyers should know? (Reason for selling, negotiable price, etc.)"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fab fa-whatsapp"></i> Submit Listing
+                    </button>
+
+                    <div class="loading" id="loadingSelling">
+                        <div class="spinner"></div>
+                        <p>Preparing your listing...</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>About Eksu Bro</h2>
+            <p>
+                Eksu Bro is your all-in-one EKSU student hub — from crypto deals to clean laundry, 
+                past questions, and matchmaking — we've got you covered. We understand the unique 
+                challenges and needs of EKSU students, and we're here to make your campus life easier, 
+                more connected, and infinitely better. Join thousands of students who trust us for 
+                everything they need!
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EKSU BRO</h3>
+                <p>Your trusted EKSU student hub for all services.</p>
+                <div class="social-icons">
+                    <a href="https://instagram.com/eksubro" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/2348012345678" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://x.com/eksubro" target="_blank" aria-label="X (Twitter)">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#services"><i class="fas fa-angle-right"></i> Crypto Exchange</a></li>
+                    <li><a href="#services"><i class="fas fa-angle-right"></i> Matchmaking</a></li>
+                    <li><a href="#services"><i class="fas fa-angle-right"></i> Laundry Services</a></li>
+                    <li><a href="#roommate"><i class="fas fa-angle-right"></i> Roommate Finder</a></li>
+                    <li><a href="#services"><i class="fas fa-angle-right"></i> Past Questions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
+                    <li><a href="#roommate"><i class="fas fa-angle-right"></i> Find Roommate</a></li>
+                    <li><a href="#about"><i class="fas fa-angle-right"></i> About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul class="footer-links">
+                    <li><a href="https://wa.me/2348012345678"><i class="fab fa-whatsapp"></i> WhatsApp Us</a></li>
+                    <li><a href="mailto:info@eksubro.com"><i class="fas fa-envelope"></i> info@eksubro.com</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Ekiti State University, Ado-Ekiti</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>� 2025 Eksu Bro. All rights reserved. | Connecting EKSU students to everything they need.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Initial Question Handler
+        const houseStatus = document.getElementById('houseStatus');
+        const initialQuestion = document.getElementById('initialQuestion');
+        const roommateForm = document.getElementById('roommateForm');
+        const sellingForm = document.getElementById('sellingForm');
+        const houseStatusValue = document.getElementById('houseStatusValue');
+        const backBtn = document.getElementById('backBtn');
+        const backBtnSelling = document.getElementById('backBtnSelling');
+
+        houseStatus.addEventListener('change', function() {
+            if (this.value) {
+                if (this.value === 'selling') {
+                    initialQuestion.style.display = 'none';
+                    sellingForm.style.display = 'block';
+                    
+                    sellingForm.style.opacity = '0';
+                    setTimeout(() => {
+                        sellingForm.style.transition = 'opacity 0.5s ease';
+                        sellingForm.style.opacity = '1';
+                    }, 50);
+                } else {
+                    houseStatusValue.value = this.value;
+                    initialQuestion.style.display = 'none';
+                    roommateForm.style.display = 'block';
+                    
+                    roommateForm.style.opacity = '0';
+                    setTimeout(() => {
+                        roommateForm.style.transition = 'opacity 0.5s ease';
+                        roommateForm.style.opacity = '1';
+                    }, 50);
+                }
+            }
+        });
+
+        backBtn.addEventListener('click', function() {
+            roommateForm.style.display = 'none';
+            initialQuestion.style.display = 'block';
+            houseStatus.value = '';
+            roommateForm.reset();
+        });
+
+        backBtnSelling.addEventListener('click', function() {
+            sellingForm.style.display = 'none';
+            initialQuestion.style.display = 'block';
+            houseStatus.value = '';
+            sellingForm.reset();
+        });
+
+        // Roommate Form Submission
+        document.getElementById('roommateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const loading = document.getElementById('loading');
+            loading.classList.add('active');
+
+            const formData = {
+                houseStatus: document.getElementById('houseStatusValue').value,
+                fullName: document.getElementById('fullName').value,
+                gender: document.getElementById('gender').value,
+                location: document.getElementById('location').value,
+                budget: document.getElementById('budget').value,
+                preferences: document.getElementById('preferences').value,
+                whatsapp: document.getElementById('whatsapp').value
+            };
+
+            const statusText = formData.houseStatus === 'have' ? 
+                'Already has a house (Looking for roommate)' : 
+                formData.houseStatus === 'available' ?
+                'Available as roommate (No house yet)' :
+                'Looking for a house (Need accommodation)';
+
+            let recipientNumber;
+            if (formData.gender === 'Female') {
+                recipientNumber = '2348155975073';
+            } else if (formData.gender === 'Male') {
+                recipientNumber = '2348147356424';
+            }
+
+            const message = `*New Roommate Application - Eksu Bro*%0A%0A` +
+                `*Status:* ${statusText}%0A` +
+                `*Name:* ${encodeURIComponent(formData.fullName)}%0A` +
+                `*Gender:* ${formData.gender}%0A` +
+                `*Location/Hostel:* ${encodeURIComponent(formData.location)}%0A` +
+                `*Budget Range:* ${encodeURIComponent(formData.budget)}%0A` +
+                `*Lifestyle Preferences:* ${encodeURIComponent(formData.preferences)}%0A` +
+                `*WhatsApp Number:* ${formData.whatsapp}%0A%0A` +
+                `_Submitted via Eksu Bro Roommate Finder_`;
+
+            setTimeout(() => {
+                const whatsappUrl = `https://wa.me/${recipientNumber}?text=${message}`;
+                window.open(whatsappUrl, '_blank');
+                
+                loading.classList.remove('active');
+                alert('✅ Application submitted! You will be redirected to WhatsApp to complete your submission.');
+                this.reset();
+            }, 1000);
+        });
+
+        // Selling Form Submission
+        document.getElementById('sellingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const loadingSelling = document.getElementById('loadingSelling');
+            loadingSelling.classList.add('active');
+
+            const sellingData = {
+                sellerName: document.getElementById('sellerName').value,
+                sellerGender: document.getElementById('sellerGender').value,
+                itemName: document.getElementById('itemName').value,
+                itemDescription: document.getElementById('itemDescription').value,
+                originalPrice: document.getElementById('originalPrice').value,
+                sellingPrice: document.getElementById('sellingPrice').value,
+                receiptAvailable: document.getElementById('receiptAvailable').value,
+                itemCondition: document.getElementById('itemCondition').value,
+                itemAge: document.getElementById('itemAge').value,
+                sellerLocation: document.getElementById('sellerLocation').value,
+                sellerWhatsapp: document.getElementById('sellerWhatsapp').value,
+                additionalInfo: document.getElementById('additionalInfo').value
+            };
+
+            // Selling form always goes to this number regardless of gender
+            const recipientNumber = '2348155975073';
+
+            const sellingMessage = `*New Item for Sale - Eksu Bro Marketplace*%0A%0A` +
+                `*Seller Information:*%0A` +
+                `*Name:* ${encodeURIComponent(sellingData.sellerName)}%0A` +
+                `*Gender:* ${sellingData.sellerGender}%0A` +
+                `*Location:* ${encodeURIComponent(sellingData.sellerLocation)}%0A` +
+                `*WhatsApp:* ${sellingData.sellerWhatsapp}%0A%0A` +
+                `*Item Details:*%0A` +
+                `*Item:* ${encodeURIComponent(sellingData.itemName)}%0A` +
+                `*Description:* ${encodeURIComponent(sellingData.itemDescription)}%0A` +
+                `*Condition:* ${sellingData.itemCondition}%0A` +
+                `*Age:* ${encodeURIComponent(sellingData.itemAge)}%0A%0A` +
+                `*Pricing:*%0A` +
+                `*Original Price:* ${encodeURIComponent(sellingData.originalPrice)}%0A` +
+                `*Selling Price:* ${encodeURIComponent(sellingData.sellingPrice)}%0A` +
+                `*Receipt Available:* ${sellingData.receiptAvailable}%0A%0A` +
+                `*Additional Info:* ${encodeURIComponent(sellingData.additionalInfo || 'None')}%0A%0A` +
+                `_📸 Note: Seller will send item pictures in the next message_`;
+
+            setTimeout(() => {
+                const whatsappUrl = `https://wa.me/${recipientNumber}?text=${sellingMessage}`;
+                window.open(whatsappUrl, '_blank');
+                
+                loadingSelling.classList.remove('active');
+                alert('✅ Listing submitted! Please send the pictures of your item in the WhatsApp chat that just opened.');
+                this.reset();
+            }, 1000);
+        });
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .form-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+
+</body></html>
