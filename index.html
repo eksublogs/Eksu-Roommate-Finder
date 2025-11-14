@@ -1621,94 +1621,43 @@
         });
 
 </script>
-<script>
-        // Roommate Form Submission
+<script>// ROOMMATE FORM SUBMISSION
+document.getElementById("roommateForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // prevent page reload
 
-        document.getElementById('roommateForm').addEventListener('submit', function(e) {
+    const loading = document.getElementById("loading");
+    loading.classList.add("active");
 
-            e.preventDefault();
+    // Collect data
+    const fullName = document.getElementById("fullName").value;
+    const gender = document.getElementById("gender").value;
+    const location = document.getElementById("location").value;
+    const budget = document.getElementById("budget").value;
+    const preferences = document.getElementById("preferences").value;
+    const whatsapp = document.getElementById("whatsapp").value;
+    const status = document.getElementById("houseStatusValue").value;
 
-            
+    // WhatsApp message formatting
+    const message =
+`ROOMMATE APPLICATION
+=====================
+Status: ${status}
+Name: ${fullName}
+Gender: ${gender}
+Location: ${location}
+Budget: ${budget}
+Lifestyle Preferences: ${preferences}
+WhatsApp: ${whatsapp}
 
-            const loading = document.getElementById('loading');
+Sent from EKSU BLOG Website`;
 
-            loading.classList.add('active');
+    // Redirect to WhatsApp after 1 sec
+    setTimeout(() => {
+        const url = "https://wa.me/2348137890167?text=" + encodeURIComponent(message);
+        window.location.href = url;
+    }, 1000);
+});
 
-            const formData = {
-
-                houseStatus: document.getElementById('houseStatusValue').value,
-
-                fullName: document.getElementById('fullName').value,
-
-                gender: document.getElementById('gender').value,
-
-                location: document.getElementById('location').value,
-
-                budget: document.getElementById('budget').value,
-
-                preferences: document.getElementById('preferences').value,
-
-                whatsapp: document.getElementById('whatsapp').value
-
-            };
-
-            const statusText = formData.houseStatus === 'have' ? 
-
-                'Already has a house (Looking for roommate)' : 
-
-                formData.houseStatus === 'available' ?
-
-                'Available as roommate (No house yet)' :
-
-                'Looking for a house (Need accommodation)';
-
-            let recipientNumber;
-
-            if (formData.gender === 'Female') {
-
-                recipientNumber = '2348155975073';
-
-            } else if (formData.gender === 'Male') {
-
-                recipientNumber = '2348147356424';
-
-            }
-
-            const message = *New Roommate Application - Eksu Bro*%0A%0A +
-
-                *Status:* ${statusText}%0A +
-
-                *Name:* ${encodeURIComponent(formData.fullName)}%0A +
-
-                *Gender:* ${formData.gender}%0A +
-
-                *Location/Hostel:* ${encodeURIComponent(formData.location)}%0A +
-
-                *Budget Range:* ${encodeURIComponent(formData.budget)}%0A +
-
-                *Lifestyle Preferences:* ${encodeURIComponent(formData.preferences)}%0A +
-
-                *WhatsApp Number:* ${formData.whatsapp}%0A%0A +
-
-                _Submitted via Eksu Bro Roommate Finder_;
-
-            setTimeout(() => {
-
-                const whatsappUrl = https://wa.me/${recipientNumber}?text=${message};
-
-                window.open(whatsappUrl, '_blank');
-
-                
-
-                loading.classList.remove('active');
-
-                alert('✅ Application submitted! You will be redirected to WhatsApp to complete your submission.');
-
-                this.reset();
-
-            }, 1000);
-
-        });
 
         // Selling Form Submission
 
